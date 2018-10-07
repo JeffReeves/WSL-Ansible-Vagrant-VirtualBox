@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: true
+  vars:
+    doc_root: /var/www/example
+  tasks:
+    - name: Update apt-cache
+      apt: update_cache=yes
+
+    - name: Install Apache Web Server
+      apt: name=apache2 state=latest
+
+    - name: Create Custom Document Root
+      file: path={{ doc_root }} state=directory owner=www-data group=www-data
+
+    - name: Create index.html File in Document Root
+      copy: src=index.html dest={{ doc_root }}/index.html owner=www-data group=www-data mode=0644
+
+    - name: Create Apache Virtual Hosts File
+      template: src=vhost.tpl dest=/etc/apache2/sites-available/000-default.conf
+      notify: Restart Apache
+  handlers:
+    - name: Restart Apache
+      service: name=apache2 state=restarted
