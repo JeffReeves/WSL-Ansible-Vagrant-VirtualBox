@@ -12,4 +12,4 @@ Thanks goes to codingmama (<https://github.com/erikaheidi>) for providing a wond
 ## How To
 
 Please see:
-<https://alchemist.digital/articles/vagrant-ansible-and-virtualbox-on-wsl-windows-subsystem-for-linux/>
+<https://binary.run/guide/vagrant-ansible-and-virtualbox-on-wsl-windows-subsystem-for-linux/>
